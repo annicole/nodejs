@@ -1,13 +1,22 @@
 import Task from "../models/Task";
 
 export const finAllTask = async (req, res) => {
+ try {
   const tasks = await Task.find();
 
   res.send(tasks);
+ } catch (error) {
+    res.status(500).json({
+      message:"something goes wrong"
+    })
+ }
 };
 
 export const createTask = async (req, res) => {
-  console.log(req.body);
+  
+  if(!req.bod.title){
+    return res.status(400).send({message:"Content not empty"})
+  }
   const newTask = new Task({
     title: req.body.title,
     description: req.body.description,

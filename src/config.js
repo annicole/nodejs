@@ -1,6 +1,6 @@
-import { config } from "dotenv"
- config();
+import { config } from "dotenv";
+config();
 
-export default{
-    mongodbUrl:process.env.MONGODB_URI,
-}
+export default {
+  mongodbUrl: process.env.MONGODB_URI || 'mongodb://localhost/taskdb',
+};
